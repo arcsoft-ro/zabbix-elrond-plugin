@@ -42,7 +42,7 @@ foreach my $port (@ports) {
         exit 0;
     }
     my $name = %$values{"erd_node_display_name"};
-    if(!$name){
+    if(!defined($name) || $name eq ""){
 	next;
     }
     $nodes{$port} = ($name . "," . time());
