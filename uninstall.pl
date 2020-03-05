@@ -1,21 +1,29 @@
 #!/usr/bin/perl -w
 
-print("Removing zabbix scripts.\n");
+# Configuration
+my $binDir = "/usr/bin/";
+my $sudoersConf = "/etc/sudoers.d/zabbix";
+my $agentConf = "/etc/zabbix/zabbix_agentd.d/elrond_nodes.conf";
 my @files = (
-    "/usr/bin/elrond_check.pl",
-    "/usr/bin/elrond_discovery.pl"
+    "elrond_check.pl",
+    "elrond_discovery.pl"
 );
 
+print("Removing zabbix scripts:\n");
+
 foreach my $file(@files){
-    print("Removing file $file\n");
-    `rm -rf $file`;
+    $filePath = $binDir . $file;
+    print(" => $filePath\n");
+    `rm -f $filePath`;
 }
 
-print("Removing sudoers configuration.\n");
-`rm -rf /etc/sudoers.d/zabbix`;
+print("Removing sudoers configuration:\n");
+print(" => $sudoersConf\n");
+`rm -f $sudoersConf`;
 
-print("Removing zabbix agent configuration\n");
-`rm -rf /etc/zabbix/zabbix_agentd.d/elrond_nodes.conf`;
+print("Removing zabbix agent configuration:\n");
+print(" => $agentConf\n");
+`rm -f $agentConf`;
 
 print ("Restarting Zabbix Agent.\n");
 `service zabbix-agent restart`;
