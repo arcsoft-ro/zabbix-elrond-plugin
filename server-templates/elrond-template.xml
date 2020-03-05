@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-03-05T23:05:54Z</date>
+    <date>2020-03-05T23:37:34Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -53,7 +53,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>30d</lifetime>
+                    <lifetime>7d</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
