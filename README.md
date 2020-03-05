@@ -8,7 +8,7 @@ This Zabbix custom plugin and template will provide you automatic discovery for 
 2. Zabbix Agent needs to be installed on your machines hosting the Elrond nodes
 3. Perl on the node machines
 
-## Installing
+## Installing and upgrading
 
 1. Clone or download the files in this repo
 2. Install perl if you don't have it already:

@@ -3,6 +3,7 @@ use Getopt::Std;
 use LWP::Simple;
 use JSON;
 
+my $protocol = "http";
 my $path = "/node/status";
 
 sub startsWith{
@@ -16,35 +17,35 @@ sub validArg{
     return 0;
 }
 
-getopts("m:n:p:h:"	=> \%opts);
-my $node = $opts{"n"};
-my $metric = $opts{"m"};
-my $proto = $opts{"p"};
+getopts("h:p:m:" => \%opts);
 my $host = $opts{"h"};
+my $port = $opts{"p"};
+my $metric = $opts{"m"};
 
-if(!validArg($node)){
-    $node = "8080";
+if(!validArg($port)){
+    $port = "8080";
 }
-
 if(!validArg($metric)){
-    print("Missing arguments. Metric not provided with -m.\n");
-    exit 0;
-}
-if(!validArg($proto)){
-    $proto = "http";
+    print("0\n"); exit 1;
 }
 if(!validArg($host)){
     $host = "localhost";
 }
+$portAddr = $protocol . "://" . $host . ":" . $port . $path;
+$content = get($portAddr);
 
-$nodeAddr = $proto . "://" . $host . ":" . $node . $path;
-$content = get($nodeAddr);
+if(!defined($content)){
+    print("0\n"); exit 2;
+}
+
+if($metric eq "erd_node_running"){
+    print("1\n"); exit 0;
+}
 
 my $jsonObj = from_json($content);
 my $values = %$jsonObj{'details'};
 if(!defined($values)){
-    print("Could not find details element from response. Exiting...\n");
-    exit 0;
+    print("0\n"); exit 3;
 }
 
 my $retVal;
@@ -63,8 +64,7 @@ else{
 }
 
 if(!defined($retVal) || $retVal eq ""){
-    print("Could not find metric $metric in response from node. Exiting...\n");
-    exit 0;
+    print("0\n"); exit 4;
 }
 print "$retVal\n";
-exit 1;
+exit 0;
