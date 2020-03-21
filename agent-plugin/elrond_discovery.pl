@@ -5,7 +5,7 @@ use Storable;
 use Try::Tiny;
 use Getopt::Std;
 
-my $cacheFile = "/var/run/elrond_nodes";
+my $cacheFile = "/var/run/zabbix/elrond_nodes";
 my $nodesRef;
 my %nodesRef;
 my $expire;
