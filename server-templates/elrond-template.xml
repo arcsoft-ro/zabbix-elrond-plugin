@@ -60,7 +60,7 @@
                             <name>ERD Node Sync Signals 15m on {#NODENAME}</name>
                             <type>CALCULATED</type>
                             <key>erd[{#NODEPORT},calc_node_sync_signals_15m]</key>
-                            <delay>5m</delay>
+                            <delay>1m</delay>
                             <params>sum(&quot;erd[{#NODEPORT},erd_is_syncing]&quot;,900,)</params>
                             <applications>
                                 <application>
