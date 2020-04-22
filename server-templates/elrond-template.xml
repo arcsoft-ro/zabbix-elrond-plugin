@@ -61,7 +61,7 @@
                             <type>CALCULATED</type>
                             <key>erd[{#NODEPORT},calc_node_sync_signals_15m]</key>
                             <delay>5m</delay>
-                            <params>sum(&quot;erd[8080,erd_is_syncing]&quot;,900,)</params>
+                            <params>sum(&quot;erd[{#NODEPORT},erd_is_syncing]&quot;,900,)</params>
                             <applications>
                                 <application>
                                     <name>Elrond Node</name>
