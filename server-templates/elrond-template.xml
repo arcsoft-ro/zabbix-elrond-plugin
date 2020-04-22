@@ -57,6 +57,18 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
+                            <name>ERD Node Sync Signals 15m on {#NODENAME}</name>
+                            <type>CALCULATED</type>
+                            <key>erd[{#NODEPORT},calc_node_sync_signals_15m]</key>
+                            <delay>5m</delay>
+                            <params>sum(&quot;erd[8080,erd_is_syncing]&quot;,900,)</params>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ERD Node Version on {#NODENAME}</name>
                             <type>0</type>
                             <snmp_community/>
