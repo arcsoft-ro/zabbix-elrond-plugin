@@ -70,7 +70,7 @@
                             <trigger_prototypes>
                                 <trigger_prototype>
                                     <expression>{last()}&gt;2</expression>
-                                    <name>Elrond node {#NODENAME} too much Sync Signals 15m</name>
+                                    <name>Elrond node {#NODENAME} too many Sync Signals 15m</name>
                                     <priority>AVERAGE</priority>
                                 </trigger_prototype>
                             </trigger_prototypes>
