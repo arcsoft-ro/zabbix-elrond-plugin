@@ -57,25 +57,6 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>ERD Node Sync Signals 15m on {#NODENAME}</name>
-                            <type>CALCULATED</type>
-                            <key>erd[{#NODEPORT},calc_node_sync_signals_15m]</key>
-                            <delay>1m</delay>
-                            <params>sum(&quot;erd[{#NODEPORT},erd_is_syncing]&quot;,900,)</params>
-                            <applications>
-                                <application>
-                                    <name>Elrond Node</name>
-                                </application>
-                            </applications>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <expression>{last()}&gt;2</expression>
-                                    <name>Elrond node {#NODENAME} too many Sync Signals 15m</name>
-                                    <priority>AVERAGE</priority>
-                                </trigger_prototype>
-                            </trigger_prototypes>
-                        </item_prototype>
-                        <item_prototype>
                             <name>ERD Node Version on {#NODENAME}</name>
                             <type>0</type>
                             <snmp_community/>
