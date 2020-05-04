@@ -2,9 +2,11 @@
 use Getopt::Std;
 use LWP::Simple;
 use JSON;
+use Scalar::Util qw(looks_like_number);
 
 my $protocol = "http";
 my $path = "/node/status";
+my $statisticsLink = "https://wallet-api.elrond.com/validator/statistics";
 
 sub startsWith{
     return substr($_[0], 0, length($_[1])) eq $_[1];
@@ -57,6 +59,24 @@ if($metric eq "erd_new_version_exists"){
     }
     else{
 	$retVal = 1;
+    }
+}
+elsif($metric eq "erd_accepted_rate"){
+    my $key = %$values{"erd_public_key_block_sign"};
+    my $statisticsContent = get($statisticsLink);
+    my $statisticsJsonObj = from_json($statisticsContent);
+    my $validatorsJsonObj = %$statisticsJsonObj{'statistics'};
+    my $validatorJsonObj = %$validatorsJsonObj{$key};
+    my $totalNumLeaderSuccess = %$validatorJsonObj{'totalNumLeaderSuccess'};
+    my $totalNumLeaderFailure = %$validatorJsonObj{'totalNumLeaderFailure'};
+    if((looks_like_number($totalNumLeaderSuccess)) && (looks_like_number($totalNumLeaderFailure))){
+        $totalNumLeader = $totalNumLeaderSuccess + $totalNumLeaderFailure;
+        if($totalNumLeader==0){
+	    $retVal = 1;
+	}
+	else{
+	    $retVal = 100*($totalNumLeaderSuccess/$totalNumLeader);
+	}
     }
 }
 else{
