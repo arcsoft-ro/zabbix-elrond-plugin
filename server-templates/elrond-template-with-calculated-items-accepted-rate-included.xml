@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.4</version>
-    <date>2020-05-04T11:21:29Z</date>
+    <date>2020-05-04T09:13:40Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -89,19 +89,6 @@
                                     <name>Elrond Node</name>
                                 </application>
                             </applications>
-                            <trigger_prototypes>
-                                <trigger_prototype>
-                                    <expression>{last()}&lt;90</expression>
-                                    <name>Elrond node {#NODENAME} accepted rate is low</name>
-                                    <priority>HIGH</priority>
-                                    <dependencies>
-                                        <dependency>
-                                            <name>Elrond node {#NODENAME} is not running</name>
-                                            <expression>{Template App Elrond Node:erd[{#NODEPORT},erd_node_running].last(#3)}=0</expression>
-                                        </dependency>
-                                    </dependencies>
-                                </trigger_prototype>
-                            </trigger_prototypes>
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Node Version on {#NODENAME}</name>
