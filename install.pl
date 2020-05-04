@@ -30,6 +30,10 @@ my $agentConfig = $agentInstallDir . "elrond_nodes.conf";
 print(" $agentConfig => $agentConfDir\n");
 `cp -f $agentConfig $agentConfDir`;
 
+# add timeout to give time to wallet-api to reply
+sudo sed -i "s/# Timeout=3/Timeout=10/" /etc/zabbix/zabbix_agentd.conf
+
+
 print("Restarting zabbix agent.\n");
 `service zabbix-agent restart`;
 
