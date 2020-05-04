@@ -72,7 +72,7 @@ elsif($metric eq "erd_accepted_rate"){
     if((looks_like_number($totalNumLeaderSuccess)) && (looks_like_number($totalNumLeaderFailure))){
         $totalNumLeader = $totalNumLeaderSuccess + $totalNumLeaderFailure;
         if($totalNumLeader==0){
-	    $retVal = 1;
+	    $retVal = 100;
 	}
 	else{
 	    $retVal = 100*($totalNumLeaderSuccess/$totalNumLeader);
