@@ -55,7 +55,7 @@ if($metric eq "erd_new_version_exists"){
     my $version = %$values{"erd_app_version"};
     my $latestVersion = %$values{"erd_latest_tag_software_version"};
     if(startsWith($version, $latestVersion)){
-	    $retVal = 0;
+	$retVal = 0;
     }
     else{
         $retVal = 1;
@@ -72,11 +72,11 @@ elsif($metric eq "erd_accepted_rate"){
     if((looks_like_number($totalNumLeaderSuccess)) && (looks_like_number($totalNumLeaderFailure))){
         $totalNumLeader = $totalNumLeaderSuccess + $totalNumLeaderFailure;
         if($totalNumLeader==0){
-	        $retVal = 1;
-	    }
-	    else{
-	        $retVal = 100*($totalNumLeaderSuccess/$totalNumLeader);
-	    }
+	    $retVal = 1;
+	}
+	else{
+	    $retVal = 100*($totalNumLeaderSuccess/$totalNumLeader);
+	}
     }
 }
 else{
