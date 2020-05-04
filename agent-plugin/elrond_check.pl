@@ -55,10 +55,10 @@ if($metric eq "erd_new_version_exists"){
     my $version = %$values{"erd_app_version"};
     my $latestVersion = %$values{"erd_latest_tag_software_version"};
     if(startsWith($version, $latestVersion)){
-	$retVal = 0;
+	    $retVal = 0;
     }
     else{
-    $retVal = 1;
+        $retVal = 1;
     }
 }
 elsif($metric eq "erd_accepted_rate"){
