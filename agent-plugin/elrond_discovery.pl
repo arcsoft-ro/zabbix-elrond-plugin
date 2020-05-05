@@ -3,6 +3,7 @@ use LWP::Simple;
 use JSON;
 use Getopt::Std;
 use Cache::FileCache;
+use Sys::Hostname;
 
 getopts("e:" => \%opts);
 
@@ -52,12 +53,10 @@ foreach my $configFile(@configFiles){
 		}
 	    }
 	    my $nodeName = %$nodeInfo{"erd_node_display_name"};
-	    if($nodeName){
-		$jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEPORT}\":\"$port\"},";
+	    unless($nodeName){
+		$nodeName = hostname . ":" . $port;
 	    }
-    	    else{
-	        $jsonString .= "{\"{#NODENAME}\":\"$port\",\"{#NODEPORT}\":\"$port\"},";
-	    }
+	    $jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEPORT}\":\"$port\"},";
 	}
     }
 }
