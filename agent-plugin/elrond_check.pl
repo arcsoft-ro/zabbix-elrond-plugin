@@ -39,8 +39,8 @@ if(!validArg($metric)){
 if(!validArg($host)){
     $host = "localhost";
 }
-if(!validArg($expiry)){
-    $expiry = 60;
+if(!validArg($expire)){
+    $expire = 60;
 }
 
 my $cache = new Cache::FileCache( {
