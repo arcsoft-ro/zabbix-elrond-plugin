@@ -1,73 +1,68 @@
 #!/usr/bin/perl -w
 use LWP::Simple;
 use JSON;
-use Storable;
-use Try::Tiny;
 use Getopt::Std;
-
-my $cacheFile = "/var/run/zabbix/elrond_nodes";
-my $nodesRef;
-my %nodesRef;
-my $expire;
+use Cache::FileCache;
 
 getopts("e:" => \%opts);
 
+my $expire;
 if(defined($opts{"e"})){
-    $expire = $opts{"e"} * 3600;
+    $expire = $opts{"e"} * 1000;
 }
 else{
     $expire = 60;
 }
 
-try {
-    $nodesRef = retrieve($cacheFile);
-    %nodes = %$nodesRef;
-}
-catch {};
+my $cacheRoot = "/var/run/zabbix/elrond_cache";
+my $cacheNs = "ERD_DISCOVERY";
 
-my @netLines = split/\n/,`sudo /bin/netstat -antp`;
+my $cache = new Cache::FileCache( {
+    "cache_root" => $cacheRoot,
+    "namespace" => $cacheNs,
+    "default_expires_in" => $expire
+});
 
-my @ports;
-foreach my $netLine (@netLines){
-    push(@ports, $1) if $netLine =~ /127\.0\.0\.1:([0-9]+).*LISTEN.*\/node/;
-}
+my $nodeStatusKey = "nodeStatus";
+my $serviceConfigDir = "/etc/systemd/system/";
 
-foreach my $port (@ports) {
-    $nodeUrl = "http://localhost:" . $port . "/node/status";
-    $content = get($nodeUrl);
-    my $jsonObj = from_json($content);
-    my $values = %$jsonObj{'details'};
-    if(!defined($values)){
-	print("Could not find details element from response. Exiting...\n");
-        exit 0;
-    }
-    my $name = %$values{"erd_node_display_name"};
-    if(!defined($name) || $name eq ""){
-	next;
-    }
-    $nodes{$port} = ($name . "," . time());
-}
-
-foreach my $port (keys %nodes){
-    my @nodeInfo = split/,/,$nodes{$port};
-    my $lastSeen = $nodeInfo[1];
-    my $timeDiff = time() - $lastSeen;
-    if( $timeDiff >= $expire){
-	delete $nodes{$port};
-    }
-}
+opendir(DIR, $serviceConfigDir);
+@configFiles = grep(/elrond-node-.*\.service$/, readdir(DIR));
+closedir(DIR);
 
 my $jsonString = "[";
-foreach my $port (keys %nodes){
-    my @nodeInfo = split/,/,$nodes{$port};
-    my $nodeName = $nodeInfo[0];
-    $jsonString = $jsonString . "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEPORT}\":\"$port\"},";
+foreach my $configFile(@configFiles){
+    open my $fh, '<', $serviceConfigDir . $configFile or die "Cannot open file: $!\n";
+    while(<$fh>) {
+	if($_ =~ /^\s*[^#].+rest-api-interface.+$/){
+	    chomp;
+	    my @parts = split(/:/,$_);
+    	    my $port = $parts[1];
+	    @parts = split(/\s+/,$parts[0]);
+	    my $ipAddr = $parts[$#parts];
+	    my $nodeInfo = $cache->get($nodeStatusKey . $port);
+	    unless($nodeInfo){
+	        $nodeUrl = "http://" . $ipAddr . ":" . $port . "/node/status";
+		$content = get($nodeUrl);
+		if($content){
+    		    $nodeStatus = from_json($content);
+		    my $values = %$nodeStatus{"details"};
+		    $nodeInfo = $values;
+    	    	    $cache->set($nodeStatusKey . $port, $values);
+		}
+	    }
+	    my $nodeName = %$nodeInfo{"erd_node_display_name"};
+	    if($nodeName){
+		$jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEPORT}\":\"$port\"},";
+	    }
+    	    else{
+	        $jsonString .= "{\"{#NODENAME}\":\"$port\",\"{#NODEPORT}\":\"$port\"},";
+	    }
+	}
+    }
 }
+
 $jsonString =~ s/,+$//;
 print ($jsonString . "]\n");
-try{
-    store(\%nodes, $cacheFile);
-}
-catch{};
 
 exit 1;

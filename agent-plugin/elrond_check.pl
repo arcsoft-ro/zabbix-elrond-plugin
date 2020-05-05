@@ -3,7 +3,12 @@ use Getopt::Std;
 use LWP::Simple;
 use JSON;
 use Scalar::Util qw(looks_like_number);
+use Cache::FileCache;
 
+my $cacheRoot = "/var/run/zabbix/elrond_cache";
+my $cacheNs = "ERD_STATUS";
+my $nodeStatusKey = "nodeStatus-";
+my $nodesStatsKey = "nodesStats";
 my $protocol = "http";
 my $path = "/node/status";
 my $statisticsLink = "https://wallet-api.elrond.com/validator/statistics";
@@ -19,10 +24,11 @@ sub validArg{
     return 0;
 }
 
-getopts("h:p:m:" => \%opts);
+getopts("h:p:m:e:" => \%opts);
 my $host = $opts{"h"};
 my $port = $opts{"p"};
 my $metric = $opts{"m"};
+my $expire = $opts{"e"};
 
 if(!validArg($port)){
     $port = "8080";
@@ -33,8 +39,23 @@ if(!validArg($metric)){
 if(!validArg($host)){
     $host = "localhost";
 }
-$portAddr = $protocol . "://" . $host . ":" . $port . $path;
-$content = get($portAddr);
+if(!validArg($expiry)){
+    $expiry = 60;
+}
+
+my $cache = new Cache::FileCache( {
+    "cache_root" => $cacheRoot,
+    "namespace" => $cacheNs,
+    "default_expires_in" => $expire
+});
+
+$nodeApiUrl = $protocol . "://" . $host . ":" . $port . $path;
+
+my $content = $cache->get($nodeStatusKey . $port);
+unless($content){
+    $content = get($nodeApiUrl);
+    $cache->set($nodeStatusKey . $port, $content);
+}
 
 if(!defined($content)){
     print("0\n"); exit 2;
@@ -63,7 +84,11 @@ if($metric eq "erd_new_version_exists"){
 }
 elsif($metric eq "erd_accepted_rate"){
     my $key = %$values{"erd_public_key_block_sign"};
-    my $statisticsContent = get($statisticsLink);
+    my $statisticsContent = $cache->get($nodesStatsKey);
+    unless($statisticsContent){
+	$statisticsContent = get($statisticsLink);
+	$cache->set($nodesStatsKey, $statisticsContent, 5);
+    }
     my $statisticsJsonObj = from_json($statisticsContent);
     my $validatorsJsonObj = %$statisticsJsonObj{'statistics'};
     my $validatorJsonObj = %$validatorsJsonObj{$key};

@@ -3,8 +3,6 @@
 # Configuration
 my $binDir = "/usr/bin/";
 my $agentInstallDir = "./agent-plugin/";
-my $sudoersConf = "./conf/sudoers.d/zabbix";
-my $sudoersConfDir = "/etc/sudoers.d";
 my $agentConfDir = "/etc/zabbix/zabbix_agentd.d";
 my @files = (
     "elrond_check.pl", 
@@ -12,7 +10,7 @@ my @files = (
 );
 
 print("Installing packages.\n");
-`apt install libwww-perl libjson-perl -y 2>/dev/null`;
+`apt install libwww-perl libjson-perl libcache-cache-perl -y 2>/dev/null`;
 
 print("Copying zabbix scripts:\n");
 foreach my $file(@files){
@@ -20,10 +18,6 @@ foreach my $file(@files){
     print(" $filePath => $binDir\n");
     `cp -f $filePath $binDir`;
 }
-
-print("Setting up sudo:\n");
-print(" $sudoersConf => $sudoersConfDir\n");
-`cp -f $sudoersConf $sudoersConfDir`;
 
 print("Setting up zabbix agent:\n");
 my $agentConfig = $agentInstallDir . "elrond_nodes.conf";
