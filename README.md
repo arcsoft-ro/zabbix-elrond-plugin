@@ -26,13 +26,11 @@ After importing the template into the Zabbix server, adapt the items, triggers, 
 
 ### Template Macros
 
-```
-{$DEXP} - Discovery Cache expiry (seconds) - Controls for how many seconds to keep the node data that contains the node name in cache
-{$METANODEURL} - The URL from where to fetch node statistics
-{$NSEXP} - Node Status Cache expiry (seconds) - Controls for how many seconds to keep the node status data for the node_status check script.
-{$VSEXP1} - Validator Statistics Cache1 expiry (seconds) - Controls for how many seconds to keep the validator statistics data for the validator_statistics check script
-{$VSEXP1} - Validator Statistics Cache2 expiry (seconds) - Controls for how many seconds to keep the node status data for the validator_statistics check script
-```
+{$DEXP} - Discovery Cache expiry (seconds) - Controls for how many seconds to keep the node data that contains the node name in cache.<br/>
+{$METANODEURL} - The URL from where to fetch node statistics.<br/>
+{$NSEXP} - Node Status Cache expiry (seconds) - Controls for how many seconds to keep the node status data for the node_status check script.<br/>
+{$VSEXP1} - Validator Statistics Cache1 expiry (seconds) - Controls for how many seconds to keep the validator statistics data for the validator_statistics check script.<br/>
+{$VSEXP1} - Validator Statistics Cache2 expiry (seconds) - Controls for how many seconds to keep the node status data for the validator_statistics check script.<br/>
 
 ## Uninstalling
 Run the uninstallation script:
