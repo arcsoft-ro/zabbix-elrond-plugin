@@ -1,26 +1,29 @@
 #!/usr/bin/perl -w
 
 # Configuration
-my $binDir = "/usr/bin/";
+my $binDir = "/usr/bin/erd/";
 my $agentInstallDir = "./agent-plugin/";
 my $agentConfDir = "/etc/zabbix/zabbix_agentd.d";
 my @files = (
-    "elrond_check.pl", 
-    "elrond_discovery.pl"
+    "ERD",
+    "discovery.pl",
+    "node_status.pl",
+    "validator_statistics.pl"
 );
 
 print("Installing packages.\n");
 `apt install libwww-perl libjson-perl libcache-cache-perl -y 2>/dev/null`;
 
 print("Copying zabbix scripts:\n");
+`mkdir -p $binDir/ERD`;
 foreach my $file(@files){
     $filePath = $agentInstallDir . $file;
     print(" $filePath => $binDir\n");
-    `cp -f $filePath $binDir`;
+    `cp -r -f $filePath $binDir`;
 }
 
 print("Setting up zabbix agent:\n");
-my $agentConfig = $agentInstallDir . "elrond_nodes.conf";
+my $agentConfig = $agentInstallDir . "erd_nodes.conf";
 print(" $agentConfig => $agentConfDir\n");
 `cp -f $agentConfig $agentConfDir`;
 

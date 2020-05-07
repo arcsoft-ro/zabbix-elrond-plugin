@@ -1,22 +1,14 @@
 #!/usr/bin/perl -w
-use LWP::Simple;
-use JSON;
-use Getopt::Std;
+use lib "./";
+use lib "/usr/bin/erd";
+use Getopt::Long;
 use Cache::FileCache;
-use Sys::Hostname;
+use ERD::Utils;
+use ERD::Api;
 
-getopts("e:" => \%opts);
-
-my $expire;
-if(defined($opts{"e"})){
-    $expire = $opts{"e"} * 1000;
-}
-else{
-    $expire = 60;
-}
-
-my $cacheRoot = "/var/run/zabbix/elrond_cache";
 my $cacheNs = "ERD_DISCOVERY";
+
+my $expire = $ARGV[0] ? $ARGV[0] : 86400;
 
 my $cache = new Cache::FileCache( {
     "cache_root" => $cacheRoot,
@@ -24,7 +16,6 @@ my $cache = new Cache::FileCache( {
     "default_expires_in" => $expire
 });
 
-my $nodeStatusKey = "nodeStatus";
 my $serviceConfigDir = "/etc/systemd/system/";
 
 opendir(DIR, $serviceConfigDir);
@@ -35,28 +26,24 @@ my $jsonString = "[";
 foreach my $configFile(@configFiles){
     open my $fh, '<', $serviceConfigDir . $configFile or die "Cannot open file: $!\n";
     while(<$fh>) {
-	if($_ =~ /^\s*[^#].+rest-api-interface.+$/){
+	if(configLineContains($_,"rest-api-interface")){
 	    chomp;
 	    my @parts = split(/:/,$_);
     	    my $port = $parts[1];
 	    @parts = split(/\s+/,$parts[0]);
 	    my $ipAddr = $parts[$#parts];
-	    my $nodeInfo = $cache->get($nodeStatusKey . $port);
+	    my $nodeInfo = $cache->get($statusKeyPrefix . $port);
 	    unless($nodeInfo){
-	        $nodeUrl = "http://" . $ipAddr . ":" . $port . "/node/status";
-		$content = get($nodeUrl);
-		if($content){
-    		    $nodeStatus = from_json($content);
-		    my $values = %$nodeStatus{"details"};
-		    $nodeInfo = $values;
-    	    	    $cache->set($nodeStatusKey . $port, $values);
+		$nodeInfo = getNodeStatus("http", $ipAddr, $port);
+		if($nodeInfo){
+    	    	    $cache->set($statusKeyPrefix . $port, $nodeInfo);
 		}
 	    }
 	    my $nodeName = %$nodeInfo{"erd_node_display_name"};
 	    unless($nodeName){
-		$nodeName = hostname . ":" . $port;
+		$nodeName = $hostName . ":" . $port;
 	    }
-	    $jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEPORT}\":\"$port\"},";
+	    $jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEIP}\":\"$ipAddr\",\"{#NODEPORT}\":\"$port\"},";
 	}
     }
 }
