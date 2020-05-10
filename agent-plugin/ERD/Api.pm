@@ -42,5 +42,4 @@ sub getValidatorStatistics{
     return undef;
 }
 
-
 1;

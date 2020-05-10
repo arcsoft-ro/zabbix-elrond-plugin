@@ -1,34 +1,32 @@
 #!/usr/bin/perl -w
-use lib "./";
 use lib "/usr/bin/erd";
 use Getopt::Long;
 use Cache::FileCache;
 use ERD::Utils;
 use ERD::Api;
 
-my $cacheNs = "ERD_NODESTATUS";
 my $proto = "http";
 
 my $metric = $ARGV[0];
 my $ipAddr = $ARGV[1];
 my $port = $ARGV[2];
-my $expire = $ARGV[3] ? $ARGV[3] : $defaultExpire;
+my $nsExpire = $ARGV[3] ? $ARGV[3] : $nsExpireDefault;
 
 unless($metric && $ipAddr && $port){
     print("0\n"); exit 1;
 }
 
-my $cache = new Cache::FileCache( {
+my $nsCache = new Cache::FileCache( {
     "cache_root" => $cacheRoot,
-    "namespace" => $cacheNs,
-    "default_expires_in" => $expire
+    "namespace" => $nsNameSpace,
+    "default_expires_in" => $nsExpire
 });
 
-my $nodeInfo = $cache->get($statusKeyPrefix . $port);
+my $nodeInfo = $nsCache->get($nsKeyPrefix . $port);
 unless($nodeInfo){
     $nodeInfo = getNodeStatus($proto, $ipAddr, $port);
     if($nodeInfo){
-        $cache->set($statusKeyPrefix . $port, $nodeInfo);
+        $nsCache->set($nsKeyPrefix . $port, $nodeInfo);
     }
     else{
 	print("0\n"); exit 2;

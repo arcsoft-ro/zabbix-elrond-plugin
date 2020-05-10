@@ -20,32 +20,40 @@ my @oldfiles = (
     "elrond_discovery.pl"
 );
 
+print("###\n### Uninstalling the Elrond Zabbix Plugin.\n###\n");
 print("Removing zabbix scripts:\n");
 
 foreach my $file(@oldfiles){
     $filePath = $oldbinDir . $file;
     print(" => $filePath\n");
-    `rm -f $filePath`;
+    system("rm -f $filePath");
 }
 
 foreach my $file(@files){
     $filePath = $binDir . $file;
     print(" => $filePath\n");
-    `rm -f $filePath`;
+    system("rm -f $filePath");
 }
-
 
 print("Removing sudoers configuration:\n");
 print(" => $oldsudoersConf\n");
-`rm -f $oldsudoersConf`;
+system("rm -f $oldsudoersConf");
 
 print("Removing zabbix agent configuration:\n");
 print(" => $oldagentConf\n");
-`rm -f $oldagentConf`;
+system("rm -f $oldagentConf");
 print(" => $agentConf\n");
-`rm -f $agentConf`;
+system("rm -f $agentConf");
 
-print ("Restarting Zabbix Agent.\n");
-`service zabbix-agent restart`;
+my $cacheRoot = "/var/run/zabbix/erd_cache";
+print("Removing cache:\n");
+print(" => $cacheRoot\n");
+system("rm -rf $cacheRoot");
 
-print("DONE!\n");
+if(!$ARGV[0] || $ARGV[0] ne "skip-restart"){
+    print("Restarting zabbix agent.\n");
+    system("service zabbix-agent restart");
+}
+
+print("### DONE!\n");
+exit 0;

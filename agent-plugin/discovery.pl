@@ -1,19 +1,16 @@
 #!/usr/bin/perl -w
-use lib "./";
 use lib "/usr/bin/erd";
 use Getopt::Long;
 use Cache::FileCache;
 use ERD::Utils;
 use ERD::Api;
 
-my $cacheNs = "ERD_DISCOVERY";
+my $nsExpire = $ARGV[0] ? $ARGV[0] : $nsExpireDefault;
 
-my $expire = $ARGV[0] ? $ARGV[0] : 86400;
-
-my $cache = new Cache::FileCache( {
+my $nsCache = new Cache::FileCache( {
     "cache_root" => $cacheRoot,
-    "namespace" => $cacheNs,
-    "default_expires_in" => $expire
+    "namespace" => $nsNameSpace,
+    "default_expires_in" => $nsExpire
 });
 
 my $serviceConfigDir = "/etc/systemd/system/";
@@ -32,11 +29,11 @@ foreach my $configFile(@configFiles){
     	    my $port = $parts[1];
 	    @parts = split(/\s+/,$parts[0]);
 	    my $ipAddr = $parts[$#parts];
-	    my $nodeInfo = $cache->get($statusKeyPrefix . $port);
+	    my $nodeInfo = $nsCache->get($nsKeyPrefix . $port);
 	    unless($nodeInfo){
 		$nodeInfo = getNodeStatus("http", $ipAddr, $port);
 		if($nodeInfo){
-    	    	    $cache->set($statusKeyPrefix . $port, $nodeInfo);
+    	    	    $nsCache->set($nsKeyPrefix . $port, $nodeInfo);
 		}
 	    }
 	    my $nodeName = %$nodeInfo{"erd_node_display_name"};
@@ -50,5 +47,4 @@ foreach my $configFile(@configFiles){
 
 $jsonString =~ s/,+$//;
 print ($jsonString . "]\n");
-
-exit 1;
+exit 0;

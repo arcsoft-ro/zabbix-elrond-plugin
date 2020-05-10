@@ -3,10 +3,13 @@ package ERD::Utils;
 require Exporter;
 @ISA	= qw(Exporter);
 @EXPORT	= qw(
-    $defaultExpire
     $cacheRoot
-    $statusKeyPrefix
-    $statisticsKeyPrefix
+    $nsExpireDefault
+    $vsExpireDefault
+    $nsNameSpace
+    $vsNameSpace
+    $nsKeyPrefix
+    $vsKeyPrefix
     $hostName
     $pubKeyProp
     configLineContains
@@ -20,10 +23,13 @@ use Sys::Hostname;
 ######
 # Global Configuration
 ######
-our $defaultExpire = 60;
 our $cacheRoot = "/var/run/zabbix/erd_cache";
-our $statusKeyPrefix = "nodeStatus-";
-our $statisticsKeyPrefix = "nodesStatistics";
+our $nsExpireDefault = 60;
+our $vsExpireDefault = 3600;
+our $nsNameSpace = "ERD_NODESTATUS";
+our $vsNameSpace = "ERD_VALIDATORSTATISTICS";
+our $nsKeyPrefix = "nodeStatus-";
+our $vsKeyPrefix = "nodesStatistics";
 our $hostName = hostname;
 our $pubKeyProp = "erd_public_key_block_sign";
 
@@ -42,7 +48,5 @@ sub configLineContains{
 sub startsWith{
     return substr($_[0], 0, length($_[1])) eq $_[1];
 }
-
-
 
 1;
