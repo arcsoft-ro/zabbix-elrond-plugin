@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-05-10T21:40:02Z</date>
+    <date>2020-05-11T11:02:24Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -1647,11 +1647,11 @@
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
-                    <value>55</value>
+                    <value>59</value>
                 </macro>
                 <macro>
                     <macro>{$VSEXP}</macro>
-                    <value>3600</value>
+                    <value>3590</value>
                 </macro>
             </macros>
             <templates/>
