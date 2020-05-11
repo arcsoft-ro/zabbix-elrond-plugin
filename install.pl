@@ -1,36 +1,35 @@
 #!/usr/bin/perl -w
 
 # Configuration
-my $binDir = "/usr/bin/";
+my $binDir = "/usr/bin/erd/";
 my $agentInstallDir = "./agent-plugin/";
-my $sudoersConf = "./conf/sudoers.d/zabbix";
-my $sudoersConfDir = "/etc/sudoers.d";
 my $agentConfDir = "/etc/zabbix/zabbix_agentd.d";
 my @files = (
-    "elrond_check.pl", 
-    "elrond_discovery.pl"
+    "ERD",
+    "discovery.pl",
+    "node_status.pl",
+    "validator_statistics.pl"
 );
 
+print("###\n### Installing the Elrond Zabbix Plugin.\n###\n");
 print("Installing packages.\n");
-`apt install libwww-perl libjson-perl -y 2>/dev/null`;
+system("apt install libwww-perl libjson-perl libcache-cache-perl -y 2>/dev/null");
 
 print("Copying zabbix scripts:\n");
+system("mkdir -p $binDir/ERD");
 foreach my $file(@files){
     $filePath = $agentInstallDir . $file;
     print(" $filePath => $binDir\n");
-    `cp -f $filePath $binDir`;
+    system("cp -r -f $filePath $binDir");
 }
 
-print("Setting up sudo:\n");
-print(" $sudoersConf => $sudoersConfDir\n");
-`cp -f $sudoersConf $sudoersConfDir`;
-
 print("Setting up zabbix agent:\n");
-my $agentConfig = $agentInstallDir . "elrond_nodes.conf";
+my $agentConfig = $agentInstallDir . "erd_nodes.conf";
 print(" $agentConfig => $agentConfDir\n");
-`cp -f $agentConfig $agentConfDir`;
+system("cp -f $agentConfig $agentConfDir");
 
 print("Restarting zabbix agent.\n");
-`service zabbix-agent restart`;
+system("service zabbix-agent restart");
 
-print("DONE!\n");
+print("### DONE!\n");
+exit 0;
