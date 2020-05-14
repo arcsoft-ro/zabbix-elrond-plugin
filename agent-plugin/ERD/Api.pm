@@ -4,6 +4,7 @@ require Exporter;
 @ISA	= qw(Exporter);
 @EXPORT	= qw(
     getNodeStatus
+    getNodeStatistics
     getValidatorStatistics
 );
 
@@ -15,13 +16,13 @@ use JSON;
 ######
 sub getNodeStatus{
     my $proto = $_[0];
-    my $ipAddr = $_[1];
+    my $host = $_[1];
     my $port = $_[2];
-    unless($proto && $ipAddr && $port){
+    unless($proto && $host && $port){
 	return undef;
     }
-    my $nodeUrl = $proto . "://" . $ipAddr . ":" . $port . "/node/status";
-    $content = get($nodeUrl);
+    my $nodeUrl = $proto . "://" . $host . ":" . $port . "/node/status";
+    my $content = get($nodeUrl);
     if($content){
         $nodeStatus = from_json($content);
         return %$nodeStatus{"details"};
@@ -30,11 +31,25 @@ sub getNodeStatus{
 }
 
 ######
+# Gets the node statistics
+######
+sub getNodeStatistics{
+    my $nodeUrl = $_[0] ? $_[0] : "http://localhost:8080/node/statistics";
+    my $content = get($nodeUrl);
+    if($content){
+        $nodeStatistics = from_json($content);
+        return %$nodeStatistics{"statistics"};
+    }
+    return undef;
+}
+
+
+######
 # Gets the validator statistics
 ######
 sub getValidatorStatistics{
     my $metaNodeUrl = $_[0] ? $_[0] : "https://wallet-api.elrond.com/validator/statistics";
-    $content = get($metaNodeUrl);
+    my $content = get($metaNodeUrl);
     if($content){
         $nodeStatus = from_json($content);
         return %$nodeStatus{"statistics"};

@@ -95,7 +95,7 @@ else{
     $retVal = %$validatorStats{$metric};
 }
 
-unless($retVal){
+unless($retVal || looks_like_number($retVal)){
     print("0\n"); exit 4;
 }
 

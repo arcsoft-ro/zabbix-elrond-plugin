@@ -8,6 +8,7 @@ my @files = (
     "ERD",
     "discovery.pl",
     "node_status.pl",
+    "node_statistics.pl",
     "validator_statistics.pl"
 );
 

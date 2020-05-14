@@ -2,17 +2,18 @@
 use lib "/usr/bin/erd";
 use Getopt::Long;
 use Cache::FileCache;
+use Scalar::Util qw(looks_like_number);
 use ERD::Utils;
 use ERD::Api;
 
 my $proto = "http";
 
 my $metric = $ARGV[0];
-my $ipAddr = $ARGV[1];
+my $host = $ARGV[1];
 my $port = $ARGV[2];
 my $nsExpire = $ARGV[3] ? $ARGV[3] : $nsExpireDefault;
 
-unless($metric && $ipAddr && $port){
+unless($metric && $host && $port){
     print("0\n"); exit 1;
 }
 
@@ -24,7 +25,7 @@ my $nsCache = new Cache::FileCache( {
 
 my $nodeInfo = $nsCache->get($nsKeyPrefix . $port);
 unless($nodeInfo){
-    $nodeInfo = getNodeStatus($proto, $ipAddr, $port);
+    $nodeInfo = getNodeStatus($proto, $host, $port);
     if($nodeInfo){
         $nsCache->set($nsKeyPrefix . $port, $nodeInfo);
     }
@@ -48,7 +49,7 @@ else{
     $retVal = %$nodeInfo{$metric};
 }
 
-unless($retVal){
+unless($retVal || looks_like_number($retVal)){
     print("0\n"); exit 3;
 }
 
