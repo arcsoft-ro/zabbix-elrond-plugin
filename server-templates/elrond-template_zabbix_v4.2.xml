@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-06-04T16:46:08Z</date>
+    <date>2020-06-04T18:34:17Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -149,7 +149,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.discovery[{$NSEXP}]</key>
-                    <delay>60m</delay>
+                    <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
