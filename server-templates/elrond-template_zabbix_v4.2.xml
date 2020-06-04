@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-05-14T14:24:05Z</date>
+    <date>2020-06-04T16:46:08Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -149,7 +149,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.discovery[{$NSEXP}]</key>
-                    <delay>1m</delay>
+                    <delay>60m</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -172,7 +172,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>1h</lifetime>
+                    <lifetime>7d</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -1573,7 +1573,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1595,7 +1595,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1617,14 +1617,14 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                            <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Elrond node {#NODENAME} is not running</name>
@@ -1655,7 +1655,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1677,7 +1677,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1721,7 +1721,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1946,7 +1946,7 @@
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
-                    <value>58</value>
+                    <value>59</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -1992,7 +1992,7 @@
             <correlation_tag/>
             <url/>
             <status>0</status>
-            <priority>2</priority>
+            <priority>1</priority>
             <description/>
             <type>0</type>
             <manual_close>1</manual_close>
