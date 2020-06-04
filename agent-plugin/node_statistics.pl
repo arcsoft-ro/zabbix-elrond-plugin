@@ -17,10 +17,29 @@ my $nodeStatistics = getNodeStatistics($nodeUrl);
 unless($nodeStatistics){
     print("0\n"); exit 2;
 }
+my $shardInfo = %$nodeStatistics{"shardStatistics"};
+if($metric eq "discovery"){
+    my $jsonString = "[";
+    for(my $i=0; $i < scalar @$shardInfo; $i++){
+	my $shardStats = @$shardInfo[$i];
+	my $shardId = %$shardStats{"shardID"};
+        $jsonString .= "{\"{#SHARDID}\":\"$shardId\"},";
+    }
+    $jsonString =~ s/,+$//;
+    $jsonString .= "]";
+    print $jsonString;
+    exit 0;
+}
 my $retVal;
 if(looks_like_number($shard)){
-    $shardInfo = %$nodeStatistics{"shardStatistics"};
-    $nodeStatistics = @$shardInfo[$shard];
+    for(my $i=0; $i < scalar @$shardInfo; $i++){
+	my $shardStats = @$shardInfo[$i];
+	my $shardId = %$shardStats{"shardID"};
+	if($shardId == $shard){
+	    $nodeStatistics = @$shardInfo[$shard];
+	    last;
+	}
+    }
 }
 $retVal = %$nodeStatistics{$metric};
 
