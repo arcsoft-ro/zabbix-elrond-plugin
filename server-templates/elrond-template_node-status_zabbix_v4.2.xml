@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-06-04T18:34:17Z</date>
+    <date>2020-06-08T18:17:58Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -1706,7 +1706,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template App Elrond Node:erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}].change()}&lt;5</expression>
+                            <expression>{Template App Elrond Node:erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}].sum(#5)}&lt;25</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Low nonce increase on Elrond node {#NODENAME}</name>
