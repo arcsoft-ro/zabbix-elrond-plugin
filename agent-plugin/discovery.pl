@@ -28,10 +28,13 @@ foreach my $configFile(@configFiles){
 	    my @parts = split(/:/,$_);
     	    my $port = $parts[1];
 	    @parts = split(/\s+/,$parts[0]);
-	    my $ipAddr = $parts[$#parts];
+	    my $host = $parts[$#parts];
+	    if($host eq "0.0.0.0" || $host eq "localhost"){
+		$host = "127.0.0.1";
+	    }
 	    my $nodeInfo = $nsCache->get($nsKeyPrefix . $port);
 	    unless($nodeInfo){
-		$nodeInfo = getNodeStatus("http", $ipAddr, $port);
+		$nodeInfo = getNodeStatus("http", $host, $port);
 		if($nodeInfo){
     	    	    $nsCache->set($nsKeyPrefix . $port, $nodeInfo);
 		}
@@ -40,7 +43,7 @@ foreach my $configFile(@configFiles){
 	    unless($nodeName){
 		$nodeName = $hostName . ":" . $port;
 	    }
-	    $jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEIP}\":\"$ipAddr\",\"{#NODEPORT}\":\"$port\"},";
+	    $jsonString .= "{\"{#NODENAME}\":\"$nodeName\",\"{#NODEIP}\":\"$host\",\"{#NODEPORT}\":\"$port\"},";
 	}
     }
 }

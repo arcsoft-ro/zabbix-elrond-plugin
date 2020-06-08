@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-05-11T11:02:24Z</date>
+    <date>2020-06-08T18:17:58Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -22,7 +22,126 @@
                     <name>Elrond Node</name>
                 </application>
             </applications>
-            <items/>
+            <items>
+                <item>
+                    <name>Elrond Node Errors in /var/log/syslog</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>log[/var/log/syslog,&quot;.*node.*ERROR.*&quot;,,,,]</key>
+                    <delay>{$NSINT}</delay>
+                    <history>90d</history>
+                    <trends>0</trends>
+                    <status>0</status>
+                    <value_type>2</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Elrond Node</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>Elrond Node Warnings in /var/log/syslog</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>log[/var/log/syslog,&quot;.*node.*WARN.*&quot;,,,,]</key>
+                    <delay>{$NSINT}</delay>
+                    <history>90d</history>
+                    <trends>0</trends>
+                    <status>0</status>
+                    <value_type>2</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Elrond Node</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+            </items>
             <discovery_rules>
                 <discovery_rule>
                     <name>Elrond Nodes Discovery</name>
@@ -30,7 +149,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.discovery[{$NSEXP}]</key>
-                    <delay>5m</delay>
+                    <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -56,6 +175,66 @@
                     <lifetime>7d</lifetime>
                     <description/>
                     <item_prototypes>
+                        <item_prototype>
+                            <name>ERD Node nonce increase on {#NODENAME}</name>
+                            <type>15</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>erd.calculated_item[{#NODENAME}]</key>
+                            <delay>{$NSINT}</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params>change(&quot;erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}]&quot;)</params>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes/>
+                            <master_item/>
+                        </item_prototype>
                         <item_prototype>
                             <name>ERD Node Version on {#NODENAME}</name>
                             <type>0</type>
@@ -118,11 +297,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD CPU Load on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_cpu_load_percent,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -177,12 +356,12 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node Syncing on {#NODENAME}</name>
-                            <type>0</type>
+                            <name>ERD Node syncing on {#NODENAME}</name>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_is_syncing,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -238,11 +417,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Memory Load on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_mem_load_percent,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -298,11 +477,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Total Memory on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_mem_total,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -358,11 +537,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Golang Memory on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_mem_used_golang,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -418,11 +597,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Sys Memory on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_mem_used_sys,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -478,11 +657,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Incoming BPS on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_network_recv_bps,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -538,11 +717,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Outgoing BPS on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_network_sent_bps,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -658,11 +837,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Node Type on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_node_type,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -718,11 +897,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Node nonce on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -776,15 +955,15 @@
                             <application_prototypes/>
                             <master_item/>
                         </item_prototype>
-						<item_prototype>
-                            <name>ERD Node Nonce Increase {#NODENAME}</name>
-                            <type>15</type>
+                        <item_prototype>
+                            <name>ERD Connected Peers to {#NODENAME}</name>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>calc.nonce_inc[{#NODEPORT}]</key>
-                            <delay>1m</delay>
-                            <history>1w</history>
-                            <trends>0</trends>
+                            <key>erd.node_status[erd_num_connected_peers,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
+                            <delay>{$NSINT}</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
@@ -796,7 +975,7 @@
                             <snmpv3_authpassphrase/>
                             <snmpv3_privprotocol>0</snmpv3_privprotocol>
                             <snmpv3_privpassphrase/>
-                            <params>change(&quot;erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}]&quot;)</params>
+                            <params/>
                             <ipmi_sensor/>
                             <authtype>0</authtype>
                             <username/>
@@ -837,12 +1016,12 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Connected Peers to {#NODENAME}</name>
-                            <type>0</type>
+                            <name>ERD Node transactions processed</name>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_status[erd_num_connected_peers,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <key>erd.node_status[erd_num_transactions_processed,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -898,11 +1077,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Node Peer Type on {#NODENAME}</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_peer_type,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -962,7 +1141,67 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.node_status[erd_shard_id,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
-                            <delay>60m</delay>
+                            <delay>{$VSINT}</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes/>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>ERD Node transactions pool load</name>
+                            <type>7</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>erd.node_status[erd_tx_pool_load,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -1022,7 +1261,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.validator_statistics[erd_leader_success_percentage,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
-                            <delay>60m</delay>
+                            <delay>{$VSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -1082,7 +1321,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.validator_statistics[erd_validator_success_percentage,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
-                            <delay>60m</delay>
+                            <delay>{$VSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -1142,7 +1381,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.validator_statistics[rating,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
-                            <delay>60m</delay>
+                            <delay>{$VSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -1202,7 +1441,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>erd.validator_statistics[totalNumValidatorFailure,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
-                            <delay>60m</delay>
+                            <delay>{$VSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -1258,11 +1497,11 @@
                         </item_prototype>
                         <item_prototype>
                             <name>ERD Node {#NODENAME} is running</name>
-                            <type>0</type>
+                            <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
                             <key>net.tcp.port[{#NODEIP},{#NODEPORT}]</key>
-                            <delay>1m</delay>
+                            <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -1334,7 +1573,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1356,7 +1595,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1378,14 +1617,14 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                            <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Elrond node {#NODENAME} is not running</name>
@@ -1416,7 +1655,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1438,7 +1677,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1467,7 +1706,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template App Elrond Node:erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}].change()}&lt;5</expression>
+                            <expression>{Template App Elrond Node:erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}].sum(#5)}&lt;25</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Low nonce increase on Elrond node {#NODENAME}</name>
@@ -1482,7 +1721,7 @@
                             <dependencies>
                                 <dependency>
                                     <name>Elrond node {#NODENAME} is not running</name>
-                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].last(#2)}=0</expression>
+                                    <expression>{Template App Elrond Node:net.tcp.port[{#NODEIP},{#NODEPORT}].sum(#5)}=0</expression>
                                     <recovery_expression/>
                                 </dependency>
                             </dependencies>
@@ -1710,8 +1949,16 @@
                     <value>59</value>
                 </macro>
                 <macro>
+                    <macro>{$NSINT}</macro>
+                    <value>60s</value>
+                </macro>
+                <macro>
                     <macro>{$VSEXP}</macro>
                     <value>3590</value>
+                </macro>
+                <macro>
+                    <macro>{$VSINT}</macro>
+                    <value>60m</value>
                 </macro>
             </macros>
             <templates/>
@@ -1719,4 +1966,38 @@
             <tags/>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template App Elrond Node:log[/var/log/syslog,&quot;.*node.*ERROR.*&quot;,,,,].strlen(#1)}&gt;0</expression>
+            <recovery_mode>2</recovery_mode>
+            <recovery_expression/>
+            <name>Elrond node error detected in /var/log/syslog. Check history for details!</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>1</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{Template App Elrond Node:log[/var/log/syslog,&quot;.*node.*WARN.*&quot;,,,,].strlen(#1)}&gt;0</expression>
+            <recovery_mode>2</recovery_mode>
+            <recovery_expression/>
+            <name>Elrond node warning detected in /var/log/syslog. Check history for details!</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>1</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
 </zabbix_export>
