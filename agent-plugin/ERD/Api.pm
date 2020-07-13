@@ -24,8 +24,9 @@ sub getNodeStatus{
     my $nodeUrl = $proto . "://" . $host . ":" . $port . "/node/status";
     my $content = get($nodeUrl);
     if($content){
-        $nodeStatus = from_json($content);
-        return %$nodeStatus{"details"};
+        my $responseJson = from_json($content);
+        my $dataObject = %$responseJson{"data"};
+	return %$dataObject{"metrics"};
     }
     return undef;
 }
@@ -37,8 +38,9 @@ sub getNodeStatistics{
     my $nodeUrl = $_[0] ? $_[0] : "http://localhost:8080/node/statistics";
     my $content = get($nodeUrl);
     if($content){
-        $nodeStatistics = from_json($content);
-        return %$nodeStatistics{"statistics"};
+        my $responseJson = from_json($content);
+	my $dataObject = %$responseJson{"data"};
+        return %$dataObject{"statistics"};
     }
     return undef;
 }
@@ -51,8 +53,9 @@ sub getValidatorStatistics{
     my $metaNodeUrl = $_[0] ? $_[0] : "https://wallet-api.elrond.com/validator/statistics";
     my $content = get($metaNodeUrl);
     if($content){
-        $nodeStatus = from_json($content);
-        return %$nodeStatus{"statistics"};
+        my $responseJson = from_json($content);
+	my $dataObject = %$responseJson{"data"};
+        return %$dataObject{"statistics"};
     }
     return undef;
 }
