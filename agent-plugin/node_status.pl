@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 use lib "/usr/bin/erd";
-use Getopt::Long;
 use Cache::FileCache;
 use Scalar::Util qw(looks_like_number);
 use ERD::Utils;
@@ -30,7 +29,7 @@ unless($nodeInfo){
         $nsCache->set($nsKeyPrefix . $port, $nodeInfo);
     }
     else{
-	print("0\n"); exit 2;
+        print("0\n"); exit 2;
     }
 }
 
@@ -39,7 +38,7 @@ if($metric eq "erd_new_version_exists"){
     my $version = %$nodeInfo{"erd_app_version"};
     my $latestVersion = %$nodeInfo{"erd_latest_tag_software_version"};
     if(startsWith($version, $latestVersion)){
-	$retVal = 0;
+        $retVal = 0;
     }
     else{
         $retVal = 1;

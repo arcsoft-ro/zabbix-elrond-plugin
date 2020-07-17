@@ -40,7 +40,7 @@ sub configLineContains{
     my $line = $_[0];
     my $searchString = $_[1];
     if($line =~ /^\s*[^#].+\Q$searchString\E.+$/){
-	return 1;
+        return 1;
     }
     return 0;
 }

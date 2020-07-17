@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2020-07-11T15:37:41Z</date>
+    <date>2020-07-17T10:27:51Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -23,9 +23,9 @@
             </applications>
             <items>
                 <item>
-                    <name>Elrond Blockchain Average Block Transaction Count</name>
+                    <name>Metachain Average Block TX Count</name>
                     <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <applications>
                         <application>
                             <name>Elrond Blockchain Statistics</name>
@@ -33,7 +33,17 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Live TPS</name>
+                    <name>Metachain Current Block Nonce</name>
+                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <delay>{$NSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Live TPS</name>
                     <key>erd.node_statistics[{$METAURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
                     <applications>
@@ -43,7 +53,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Peak TPS</name>
+                    <name>Metachain Peak TPS</name>
                     <key>erd.node_statistics[{$METAURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
@@ -53,9 +63,9 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Total Processed Transaction Count</name>
+                    <name>Metachain Total Processed TX Count</name>
                     <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <applications>
                         <application>
                             <name>Elrond Blockchain Statistics</name>
@@ -66,9 +76,9 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Shard Discovery</name>
-                    <key>erd.node_statistics[{$METAURL},discovery]</key>
+                    <key>erd.shards_discovery[{$METAURL}]</key>
                     <delay>1h</delay>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>Shard {#SHARDID} Average Block TX Count</name>
@@ -163,10 +173,10 @@
             </applications>
             <items>
                 <item>
-                    <name>Elrond Blockchain Average Block Transaction Count</name>
+                    <name>Metachain Average Block TX Count</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <applications>
                         <application>
                             <name>Elrond Blockchain Statistics</name>
@@ -174,7 +184,18 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Live TPS</name>
+                    <name>Metachain Current Block Nonce</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <delay>{$NSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Live TPS</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>erd.node_statistics[{$METAURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
@@ -185,7 +206,7 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Peak TPS</name>
+                    <name>Metachain Peak TPS</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>erd.node_statistics[{$METAURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
@@ -196,10 +217,10 @@
                     </applications>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Total Processed Transaction Count</name>
+                    <name>Metachain Total Processed TX Count</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <applications>
                         <application>
                             <name>Elrond Blockchain Statistics</name>
@@ -210,9 +231,10 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Shard Discovery</name>
-                    <key>erd.node_statistics[{$METAURL},discovery]</key>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.shards_discovery[{$METAURL}]</key>
                     <delay>1h</delay>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>Shard {#SHARDID} Average Block TX Count</name>
@@ -358,9 +380,9 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Elrond Nodes Discovery</name>
-                    <key>erd.discovery[{$NSEXP}]</key>
+                    <key>erd.nodes_discovery[{$NSEXP}]</key>
                     <delay>1h</delay>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>ERD Node nonce increase on {#NODENAME}</name>
@@ -576,7 +598,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions processed</name>
+                            <name>ERD Node transactions processed on {#NODENAME}</name>
                             <key>erd.node_status[erd_num_transactions_processed,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
@@ -621,7 +643,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions pool load</name>
+                            <name>ERD Node transactions pool load on {#NODENAME}</name>
                             <key>erd.node_status[erd_tx_pool_load,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
@@ -876,14 +898,15 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Elrond Nodes Discovery</name>
-                    <key>erd.discovery[{$NSEXP}]</key>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.nodes_discovery[{$NSEXP}]</key>
                     <delay>1h</delay>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>ERD Node nonce increase on {#NODENAME}</name>
                             <type>CALCULATED</type>
-                            <key>erd.calculated_item[{#NODENAME}]</key>
+                            <key>erd.calculated_nonce_increase[{#NODENAME}]</key>
                             <delay>{$NSINT}</delay>
                             <params>change(&quot;erd.node_status[erd_nonce,{#NODEIP},{#NODEPORT},{$NSEXP}]&quot;)</params>
                             <applications>
@@ -1107,7 +1130,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions processed</name>
+                            <name>ERD Node transactions processed on {#NODENAME}</name>
                             <type>ZABBIX_ACTIVE</type>
                             <key>erd.node_status[erd_num_transactions_processed,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
                             <delay>{$NSINT}</delay>
@@ -1155,7 +1178,7 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions pool load</name>
+                            <name>ERD Node transactions pool load on {#NODENAME}</name>
                             <type>ZABBIX_ACTIVE</type>
                             <key>erd.node_status[erd_tx_pool_load,{#NODEIP},{#NODEPORT},{$NSEXP}]</key>
                             <delay>{$NSINT}</delay>

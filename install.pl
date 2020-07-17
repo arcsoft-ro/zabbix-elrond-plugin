@@ -6,7 +6,8 @@ my $agentInstallDir = "./agent-plugin/";
 my $agentConfDir = "/etc/zabbix/zabbix_agentd.d";
 my @files = (
     "ERD",
-    "discovery.pl",
+    "nodes_discovery.pl",
+    "shards_discovery.pl",
     "node_status.pl",
     "node_statistics.pl",
     "validator_statistics.pl"

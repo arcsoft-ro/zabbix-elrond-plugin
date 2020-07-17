@@ -10,14 +10,17 @@ my $oldagentConf = "/etc/zabbix/zabbix_agentd.d/elrond_nodes.conf";
 my @files = (
     "ERD/Api.pm",
     "ERD/Utils.pm",
-    "discovery.pl",
+    "nodes_discovery.pl",
+    "shards_discovery.pl",
     "node_status.pl",
+    "node_statistics.pl",
     "validator_statistics.pl"
 );
 
 my @oldfiles = (
     "elrond_check.pl",
-    "elrond_discovery.pl"
+    "elrond_discovery.pl",
+    "discovery.pl"
 );
 
 print("###\n### Uninstalling the Elrond Zabbix Plugin.\n###\n");
@@ -25,6 +28,9 @@ print("Removing zabbix scripts:\n");
 
 foreach my $file(@oldfiles){
     $filePath = $oldbinDir . $file;
+    print(" => $filePath\n");
+    system("rm -f $filePath");
+    $filePath = $binDir . $file;
     print(" => $filePath\n");
     system("rm -f $filePath");
 }

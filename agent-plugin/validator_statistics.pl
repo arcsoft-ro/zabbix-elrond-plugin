@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 use lib "/usr/bin/erd";
-use Getopt::Long;
 use Cache::FileCache;
 use Scalar::Util qw(looks_like_number);
 use ERD::Utils;
@@ -38,7 +37,7 @@ unless($nodeInfo){
         $nsCache->set($nsKeyPrefix . $port, $nodeInfo, $nsExpire);
     }
     else{
-	print("0\n"); exit 2;
+        print("0\n"); exit 2;
     }
 }
 
@@ -52,7 +51,7 @@ unless($validatorsStats){
         $vsCache->set($vsKeyPrefix, $validatorsStats, $vsExpire);
     }
     else{
-	print("0\n"); exit 3;
+        print("0\n"); exit 3;
     }
 }
 

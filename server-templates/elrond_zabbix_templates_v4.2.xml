@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-07-11T15:30:25Z</date>
+    <date>2020-07-17T10:28:14Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -24,12 +24,12 @@
             </applications>
             <items>
                 <item>
-                    <name>Elrond Blockchain Average Block Transaction Count</name>
+                    <name>Metachain Average Block TX Count</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -83,7 +83,66 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Live TPS</name>
+                    <name>Metachain Current Block Nonce</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <delay>{$NSINT}</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>Metachain Live TPS</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -142,7 +201,7 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Peak TPS</name>
+                    <name>Metachain Peak TPS</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -201,12 +260,12 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Total Processed Transaction Count</name>
+                    <name>Metachain Total Processed TX Count</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -266,7 +325,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},discovery]</key>
+                    <key>erd.shards_discovery[{$METAURL}]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -290,7 +349,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -715,12 +774,12 @@
             </applications>
             <items>
                 <item>
-                    <name>Elrond Blockchain Average Block Transaction Count</name>
+                    <name>Metachain Average Block TX Count</name>
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -774,7 +833,66 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Live TPS</name>
+                    <name>Metachain Current Block Nonce</name>
+                    <type>7</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <delay>{$NSINT}</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>Metachain Live TPS</name>
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -833,7 +951,7 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Peak TPS</name>
+                    <name>Metachain Peak TPS</name>
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -892,12 +1010,12 @@
                     <master_item/>
                 </item>
                 <item>
-                    <name>Elrond Blockchain Total Processed Transaction Count</name>
+                    <name>Metachain Total Processed TX Count</name>
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
-                    <delay>5m</delay>
+                    <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
                     <status>0</status>
@@ -954,10 +1072,10 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Shard Discovery</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},discovery]</key>
+                    <key>erd.shards_discovery[{$METAURL}]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -981,7 +1099,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -1530,7 +1648,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.discovery[{$NSEXP}]</key>
+                    <key>erd.nodes_discovery[{$NSEXP}]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1554,7 +1672,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -2398,7 +2516,7 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions processed</name>
+                            <name>ERD Node transactions processed on {#NODENAME}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -2578,7 +2696,7 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions pool load</name>
+                            <name>ERD Node transactions pool load on {#NODENAME}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -3484,10 +3602,10 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Elrond Nodes Discovery</name>
-                    <type>0</type>
+                    <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.discovery[{$NSEXP}]</key>
+                    <key>erd.nodes_discovery[{$NSEXP}]</key>
                     <delay>1h</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -3511,7 +3629,7 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>7d</lifetime>
+                    <lifetime>1d</lifetime>
                     <description/>
                     <item_prototypes>
                         <item_prototype>
@@ -4355,7 +4473,7 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions processed</name>
+                            <name>ERD Node transactions processed on {#NODENAME}</name>
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
@@ -4535,7 +4653,7 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
-                            <name>ERD Node transactions pool load</name>
+                            <name>ERD Node transactions pool load on {#NODENAME}</name>
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>

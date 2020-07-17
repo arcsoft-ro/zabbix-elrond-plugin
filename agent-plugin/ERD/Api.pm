@@ -19,14 +19,14 @@ sub getNodeStatus{
     my $host = $_[1];
     my $port = $_[2];
     unless($proto && $host && $port){
-	return undef;
+        return undef;
     }
     my $nodeUrl = $proto . "://" . $host . ":" . $port . "/node/status";
     my $content = get($nodeUrl);
     if($content){
         my $responseJson = from_json($content);
         my $dataObject = %$responseJson{"data"};
-	return %$dataObject{"metrics"};
+        return %$dataObject{"metrics"};
     }
     return undef;
 }
@@ -39,7 +39,7 @@ sub getNodeStatistics{
     my $content = get($nodeUrl);
     if($content){
         my $responseJson = from_json($content);
-	my $dataObject = %$responseJson{"data"};
+        my $dataObject = %$responseJson{"data"};
         return %$dataObject{"statistics"};
     }
     return undef;
@@ -54,7 +54,7 @@ sub getValidatorStatistics{
     my $content = get($metaNodeUrl);
     if($content){
         my $responseJson = from_json($content);
-	my $dataObject = %$responseJson{"data"};
+        my $dataObject = %$responseJson{"data"};
         return %$dataObject{"statistics"};
     }
     return undef;
