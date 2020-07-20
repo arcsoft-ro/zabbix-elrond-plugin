@@ -32,8 +32,8 @@ After importing the template into the Zabbix server, adapt the items, triggers, 
 
 ### Template Macros
 
-{$DEXP} - Discovery Cache expiry (seconds) - Controls for how many seconds to keep the node data that contains the node name in cache.<br/>
-{$METANODEURL} - The URL from where to fetch node statistics.<br/>
+{$METANODEURL} - The metachain observer API URL from where to fetch node and validator statistics.<br/>
+{$METAURL} - The metachain observer API URL from where to fetch shards statistics.<br/>
 {$NSEXP} - Node Status Cache expiry (seconds) - Controls for how many seconds to keep the node status data for the node_status check script.<br/>
 {$VSEXP} - Validator Statistics Cache1 expiry (seconds) - Controls for how many seconds to keep the validator statistics data for the validator_statistics check script.<br/>
 
