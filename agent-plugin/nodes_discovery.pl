@@ -24,8 +24,11 @@ foreach my $configFile(@configFiles){
     while(<$fh>) {
         if(configLineContains($_,"rest-api-interface")){
             chomp;
-            my @parts = split(/:/,$_);
-            my $port = $parts[1];
+            my @parts = split(/rest-api-interface/,$_);
+	    my $apiConfig = $parts[1];
+	    @parts = split(/:/,$parts[1]);
+	    my @portParts = split(/\s+/,$parts[1]);
+            my $port = $portParts[0];
             @parts = split(/\s+/,$parts[0]);
             my $host = $parts[$#parts];
             if($host eq "0.0.0.0"){
