@@ -1,7 +1,7 @@
 # zabbix-elrond-plugin
 Zabbix monitoring plugin for the Elrond Nodes.
 
-This Zabbix custom plugin and template will provide you automatic discovery for your Elrond nodes, monitoring some of the most important items, adding a few triggers and graphs configuration.
+This Zabbix custom plugin and templates will provide you automatic discovery for your Elrond nodes, monitoring the most important items, adding triggers and graphs configuration.
 
 ## Prerequisites
 1. Zabbix Server
