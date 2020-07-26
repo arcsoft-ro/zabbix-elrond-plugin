@@ -41,14 +41,11 @@ unless($nodeInfo){
     }
 }
 
-my $validatorsStats = $vsCache->get($vsKeyPrefix);
+my $validatorsStats = $vsCache->get($vsKeyPrefix . "all");
 unless($validatorsStats){
-    if($ARGV[6]){
-        print "Cache MISS VS!\n";
-    }
     $validatorsStats = getValidatorStatistics($metaNodeUrl);
     if($validatorsStats){
-        $vsCache->set($vsKeyPrefix, $validatorsStats, $vsExpire);
+        $vsCache->set($vsKeyPrefix . "all", $validatorsStats, $vsExpire);
     }
     else{
         print("0\n"); exit 3;
@@ -99,4 +96,5 @@ unless($retVal || looks_like_number($retVal)){
 }
 
 print "$retVal\n";
+
 exit 0;

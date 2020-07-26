@@ -10,7 +10,8 @@ my @files = (
     "shards_discovery.pl",
     "node_status.pl",
     "node_statistics.pl",
-    "validator_statistics.pl"
+    "validator_statistics.pl",
+    "heartbeat_statistics.pl"
 );
 
 print("###\n### Installing the Elrond Zabbix Plugin.\n###\n");

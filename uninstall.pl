@@ -14,7 +14,8 @@ my @files = (
     "shards_discovery.pl",
     "node_status.pl",
     "node_statistics.pl",
-    "validator_statistics.pl"
+    "validator_statistics.pl",
+    "heartbeat_statistics.pl"
 );
 
 my @oldfiles = (

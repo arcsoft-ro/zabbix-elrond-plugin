@@ -1,16 +1,9 @@
 #!/usr/bin/perl -w
 use lib "/usr/bin/erd";
-use Cache::FileCache;
 use ERD::Utils;
 use ERD::Api;
 
 my $nsExpire = $ARGV[0] ? $ARGV[0] : $nsExpireDefault;
-
-my $nsCache = new Cache::FileCache( {
-    "cache_root" => $cacheRoot,
-    "namespace" => $nsNameSpace,
-    "default_expires_in" => $nsExpire
-});
 
 my $serviceConfigDir = "/etc/systemd/system/";
 
@@ -19,6 +12,7 @@ opendir(DIR, $serviceConfigDir);
 closedir(DIR);
 
 my $jsonString = "[";
+
 foreach my $configFile(@configFiles){
     open my $fh, '<', $serviceConfigDir . $configFile or die "Cannot open file: $!\n";
     while(<$fh>) {
@@ -42,4 +36,5 @@ foreach my $configFile(@configFiles){
 
 $jsonString =~ s/,+$//;
 print ($jsonString . "]\n");
+
 exit 0;

@@ -6,6 +6,7 @@ require Exporter;
     getNodeStatus
     getNodeStatistics
     getValidatorStatistics
+    getHeartBeatStatus
 );
 
 use LWP::Simple;
@@ -35,7 +36,10 @@ sub getNodeStatus{
 # Gets the node statistics
 ######
 sub getNodeStatistics{
-    my $nodeUrl = $_[0] ? $_[0] : "http://localhost:8080/node/statistics";
+    unless($_[0]){
+        return undef;
+    }
+    my $nodeUrl = $_[0] . "/node/statistics";
     my $content = get($nodeUrl);
     if($content){
         my $responseJson = from_json($content);
@@ -50,12 +54,32 @@ sub getNodeStatistics{
 # Gets the validator statistics
 ######
 sub getValidatorStatistics{
-    my $metaNodeUrl = $_[0] ? $_[0] : "https://wallet-api.elrond.com/validator/statistics";
+    unless($_[0]){
+        return undef;
+    }
+    my $metaNodeUrl = $_[0] . "/validator/statistics";
     my $content = get($metaNodeUrl);
     if($content){
         my $responseJson = from_json($content);
         my $dataObject = %$responseJson{"data"};
         return %$dataObject{"statistics"};
+    }
+    return undef;
+}
+
+######
+# Gets the node heart beats
+######
+sub getHeartBeatStatus{
+    unless($_[0]){
+        return undef;
+    }
+    my $nodeUrl = $_[0] . "/node/heartbeatstatus";
+    my $content = get($nodeUrl);
+    if($content){
+        my $responseJson = from_json($content);
+        my $dataObject = %$responseJson{"data"};
+        return %$dataObject{"heartbeats"};
     }
     return undef;
 }

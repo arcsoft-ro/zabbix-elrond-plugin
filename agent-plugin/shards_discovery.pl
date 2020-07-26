@@ -12,14 +12,16 @@ my $nodeStatistics = getNodeStatistics($nodeUrl);
 unless($nodeStatistics){
     print("0\n"); exit 2;
 }
-my $shardInfo = %$nodeStatistics{"shardStatistics"};
+
+my $shardInfo = %$nodeStatistics{"nrOfShards"};
 my $jsonString = "[";
-for(my $i=0; $i < scalar @$shardInfo; $i++){
-    my $shardStats = @$shardInfo[$i];
-    my $shardId = %$shardStats{"shardID"};
-    $jsonString .= "{\"{#SHARDID}\":\"$shardId\"},";
+
+for(my $i=0; $i < $shardInfo; $i++){
+    $jsonString .= "{\"{#SHARDID}\":\"$i\"},";
 }
+
 $jsonString =~ s/,+$//;
 $jsonString .= "]\n";
 print $jsonString;
+
 exit 0;
