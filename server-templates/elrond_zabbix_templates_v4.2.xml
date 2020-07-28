@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2020-07-28T05:52:47Z</date>
+    <date>2020-07-28T14:53:39Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -500,7 +500,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -559,7 +559,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <key>erd.node_statistics[{$METANODEURL},blockNumber]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -618,7 +618,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},liveTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -677,7 +677,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},peakTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -736,7 +736,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -797,7 +797,7 @@
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.shards_discovery[{$METAURL}]</key>
+                    <key>erd.shards_discovery[{$METANODEURL}]</key>
                     <delay>5m</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -1069,7 +1069,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},averageBlockTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -1129,7 +1129,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},averageTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -1189,7 +1189,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},currentBlockNonce, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},currentBlockNonce, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -1249,7 +1249,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},liveTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},liveTPS, {#SHARDID}]</key>
                             <delay>{$NSINTLIVE}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -1309,7 +1309,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},peakTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},peakTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -1369,7 +1369,7 @@
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},totalProcessedTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -1463,7 +1463,7 @@
                 </macro>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>http://localhost:8080</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -1970,7 +1970,7 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -2029,7 +2029,7 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <key>erd.node_statistics[{$METANODEURL},blockNumber]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -2088,7 +2088,7 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},liveTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -2147,7 +2147,7 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},peakTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -2206,7 +2206,7 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <history>90d</history>
                     <trends>365d</trends>
@@ -2267,7 +2267,7 @@
                     <type>7</type>
                     <snmp_community/>
                     <snmp_oid/>
-                    <key>erd.shards_discovery[{$METAURL}]</key>
+                    <key>erd.shards_discovery[{$METANODEURL}]</key>
                     <delay>5m</delay>
                     <status>0</status>
                     <allowed_hosts/>
@@ -2539,7 +2539,7 @@
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},averageBlockTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -2599,7 +2599,7 @@
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},averageTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -2659,7 +2659,7 @@
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},currentBlockNonce, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},currentBlockNonce, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -2719,7 +2719,7 @@
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},liveTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},liveTPS, {#SHARDID}]</key>
                             <delay>{$NSINTLIVE}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -2779,7 +2779,7 @@
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},peakTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},peakTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -2839,7 +2839,7 @@
                             <type>7</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>erd.node_statistics[{$METAURL},totalProcessedTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <history>90d</history>
                             <trends>365d</trends>
@@ -2933,7 +2933,7 @@
                 </macro>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>http://localhost:8080</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -4376,6 +4376,66 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
+                            <name>ERD Validator temp rating for {#NODENAME}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>erd.validator_statistics[tempRating,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
+                            <delay>{$VSINT}</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes/>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ERD Validator failures for {#NODENAME}</name>
                             <type>0</type>
                             <snmp_community/>
@@ -4882,7 +4942,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>https://wallet-api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
@@ -6333,6 +6393,66 @@
                             <master_item/>
                         </item_prototype>
                         <item_prototype>
+                            <name>ERD Validator temp rating for {#NODENAME}</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>erd.validator_statistics[tempRating,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
+                            <delay>{$VSINT}</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes/>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ERD Validator failures for {#NODENAME}</name>
                             <type>0</type>
                             <snmp_community/>
@@ -6839,7 +6959,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>https://wallet-api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>

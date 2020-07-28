@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2020-07-28T05:53:36Z</date>
+    <date>2020-07-28T14:54:02Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -104,7 +104,7 @@
                 </item>
                 <item>
                     <name>Metachain Average Block TX Count</name>
-                    <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -114,7 +114,7 @@
                 </item>
                 <item>
                     <name>Metachain Current Block Nonce</name>
-                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <key>erd.node_statistics[{$METANODEURL},blockNumber]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -124,7 +124,7 @@
                 </item>
                 <item>
                     <name>Metachain Live TPS</name>
-                    <key>erd.node_statistics[{$METAURL},liveTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
                     <applications>
                         <application>
@@ -134,7 +134,7 @@
                 </item>
                 <item>
                     <name>Metachain Peak TPS</name>
-                    <key>erd.node_statistics[{$METAURL},peakTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -144,7 +144,7 @@
                 </item>
                 <item>
                     <name>Metachain Total Processed TX Count</name>
-                    <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -156,7 +156,7 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Shard Discovery</name>
-                    <key>erd.shards_discovery[{$METAURL}]</key>
+                    <key>erd.shards_discovery[{$METANODEURL}]</key>
                     <delay>5m</delay>
                     <lifetime>1h</lifetime>
                     <item_prototypes>
@@ -202,7 +202,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Average Block TX Count</name>
-                            <key>erd.node_statistics[{$METAURL},averageBlockTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -212,7 +212,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Average TPS</name>
-                            <key>erd.node_statistics[{$METAURL},averageTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -222,7 +222,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Current Block Nonce</name>
-                            <key>erd.node_statistics[{$METAURL},currentBlockNonce, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},currentBlockNonce, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -232,7 +232,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Live TPS</name>
-                            <key>erd.node_statistics[{$METAURL},liveTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},liveTPS, {#SHARDID}]</key>
                             <delay>{$NSINTLIVE}</delay>
                             <applications>
                                 <application>
@@ -242,7 +242,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Peak TPS</name>
-                            <key>erd.node_statistics[{$METAURL},peakTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},peakTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -252,7 +252,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Total Processed TX Count</name>
-                            <key>erd.node_statistics[{$METAURL},totalProcessedTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -274,7 +274,7 @@
                 </macro>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>http://localhost:8080</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -576,7 +576,7 @@
                 </macro>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>http://localhost:8080</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -967,6 +967,17 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>ERD Validator temp rating for {#NODENAME}</name>
+                            <key>erd.validator_statistics[tempRating,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
+                            <delay>{$VSINT}</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ERD Validator failures for {#NODENAME}</name>
                             <key>erd.validator_statistics[totalNumValidatorFailure,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
                             <delay>{$VSINT}</delay>
@@ -1084,7 +1095,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>https://wallet-api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
@@ -1637,7 +1648,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>http://1.2.3.4:8080</value>
+                    <value>https://wallet-api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
