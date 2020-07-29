@@ -9,12 +9,12 @@ my $metric = $ARGV[1];
 my $shard = $ARGV[2];
 
 unless($metaNodeUrl && $metric){
-    print("0\n"); exit 1;
+    print("Arguments Error!\n"); exit 1;
 }
 
 my $nodeStatistics = getNodeStatistics($metaNodeUrl);
 unless($nodeStatistics){
-    print("0\n"); exit 2;
+    print("Could not fetch node statistics from $metaNodeUrl\n"); exit 2;
 }
 
 my $shardInfo = %$nodeStatistics{"shardStatistics"};
@@ -33,8 +33,8 @@ if(looks_like_number($shard)){
 
 $retVal = %$nodeStatistics{$metric};
 
-unless($retVal || looks_like_number($retVal)){
-    print("0\n"); exit 3;
+unless(defined($retVal)){
+    print("Undefined return value!\n"); exit 3;
 }
 
 print "$retVal\n";

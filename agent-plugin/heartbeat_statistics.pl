@@ -19,7 +19,7 @@ if($shardId eq "all"){
 }
 
 unless($metaNodeUrl && $metric && looks_like_number($shardId) && $shardId >= -1){
-    print("0\n"); exit 1;
+    print("Arguments Error!\n"); exit 1;
 }
 
 my $hsCache = new Cache::FileCache( {
@@ -38,7 +38,7 @@ unless($heartBeats){
         $hsCache->set($hsKeyPrefix . "heartbeats", $heartBeats, $hsExpire);
     }
     else{
-        print("0\n"); exit 3;
+        print("Could not fetch HeartbeatStatus from $metaNodeUrl\n"); exit 2;
     }
 }
 
@@ -52,7 +52,7 @@ unless($latestVersion){
         $hsCache->set($hsKeyPrefix . "latestversion", $latestVersion, $hsExpire);
     }
     else{
-        print("0\n"); exit 4;
+        print("Could not fetch repository latest version!\n"); exit 3;
     }
 }
 
@@ -128,8 +128,8 @@ elsif($metric eq "erd_outdated_validators"){
     $retVal = $outdatedValidators;
 }
 
-unless(looks_like_number($retVal)){
-    print("0\n"); exit 5;
+unless(defined($retVal)){
+    print("Undefined return value!\n"); exit 3;
 }
 
 print "$retVal\n";

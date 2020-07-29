@@ -5,12 +5,12 @@ use ERD::Api;
 
 my $nodeUrl = $ARGV[0];
 unless($nodeUrl){
-    print("0\n"); exit 1;
+    print("Arguments Error!\n"); exit 1;
 }
 
 my $nodeStatistics = getNodeStatistics($nodeUrl);
 unless($nodeStatistics){
-    print("0\n"); exit 2;
+    print("Could not fetch node statistics from $nodeUrl\n"); exit 2;
 }
 
 my $shardInfo = %$nodeStatistics{"nrOfShards"};

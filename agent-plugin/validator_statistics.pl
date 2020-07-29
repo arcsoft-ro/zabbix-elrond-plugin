@@ -15,7 +15,7 @@ my $vsExpire = $ARGV[4] ? $ARGV[4] : $vsExpireDefault;
 my $nsExpire = $ARGV[5] ? $ARGV[5] : $nsExpireDefault;
 
 unless($metric && $ipAddr && $port && $metaNodeUrl){
-    print("0\n"); exit 1;
+    print("Arguments Error!\n"); exit 1;
 }
 
 my $vsCache = new Cache::FileCache( {
@@ -37,7 +37,7 @@ unless($nodeInfo){
         $nsCache->set($nsKeyPrefix . $port, $nodeInfo, $nsExpire);
     }
     else{
-        print("0\n"); exit 2;
+        print("Could not fetch node status from $ipAddr:$port\n"); exit 2;
     }
 }
 
@@ -48,13 +48,13 @@ unless($validatorsStats){
         $vsCache->set($vsKeyPrefix . "all", $validatorsStats, $vsExpire);
     }
     else{
-        print("0\n"); exit 3;
+        print("Could not fetch validator statistics from $metaNodeUrl\n"); exit 3;
     }
 }
 
 my $nodePubKey = %$nodeInfo{$pubKeyProp};
 unless($nodePubKey){
-    print("0\n"); exit 3;
+    print("Validator key not found in validator statistics result!\n"); exit 4;
 }
 my $validatorStats = %$validatorsStats{$nodePubKey};
 
@@ -91,8 +91,8 @@ else{
     $retVal = %$validatorStats{$metric};
 }
 
-unless($retVal || looks_like_number($retVal)){
-    print("0\n"); exit 4;
+unless(defined($retVal)){
+    print("Undefined return value!\n"); exit 5;
 }
 
 print "$retVal\n";

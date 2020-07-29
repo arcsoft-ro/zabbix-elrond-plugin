@@ -4942,7 +4942,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>https://wallet-api.elrond.com</value>
+                    <value>https://api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
@@ -6959,7 +6959,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>https://wallet-api.elrond.com</value>
+                    <value>https://api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
