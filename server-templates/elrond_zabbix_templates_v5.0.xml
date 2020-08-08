@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2020-07-17T10:27:51Z</date>
+    <date>2020-07-28T14:54:02Z</date>
     <groups>
         <group>
             <name>Templates/Crypto</name>
@@ -23,8 +23,88 @@
             </applications>
             <items>
                 <item>
+                    <name>Validators Active</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_active_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Validators Inactive</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_inactive_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Validators Outdated</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_outdated_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Active</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_active_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Inactive</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_inactive_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Outdated</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_outdated_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Total</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_total_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Validators Total</name>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_total_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
                     <name>Metachain Average Block TX Count</name>
-                    <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -34,7 +114,7 @@
                 </item>
                 <item>
                     <name>Metachain Current Block Nonce</name>
-                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <key>erd.node_statistics[{$METANODEURL},blockNumber]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -44,7 +124,7 @@
                 </item>
                 <item>
                     <name>Metachain Live TPS</name>
-                    <key>erd.node_statistics[{$METAURL},liveTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
                     <applications>
                         <application>
@@ -54,7 +134,7 @@
                 </item>
                 <item>
                     <name>Metachain Peak TPS</name>
-                    <key>erd.node_statistics[{$METAURL},peakTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -64,7 +144,7 @@
                 </item>
                 <item>
                     <name>Metachain Total Processed TX Count</name>
-                    <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -76,13 +156,53 @@
             <discovery_rules>
                 <discovery_rule>
                     <name>Shard Discovery</name>
-                    <key>erd.shards_discovery[{$METAURL}]</key>
-                    <delay>1h</delay>
-                    <lifetime>1d</lifetime>
+                    <key>erd.shards_discovery[{$METANODEURL}]</key>
+                    <delay>5m</delay>
+                    <lifetime>1h</lifetime>
                     <item_prototypes>
                         <item_prototype>
+                            <name>Shard {#SHARDID} Validators Active</name>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_active_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Inactive</name>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_inactive_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Outdated</name>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_outdated_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Total</name>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_total_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>Shard {#SHARDID} Average Block TX Count</name>
-                            <key>erd.node_statistics[{$METAURL},averageBlockTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -92,7 +212,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Average TPS</name>
-                            <key>erd.node_statistics[{$METAURL},averageTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -102,7 +222,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Current Block Nonce</name>
-                            <key>erd.node_statistics[{$METAURL},currentBlockNonce, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},currentBlockNonce, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -112,7 +232,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Live TPS</name>
-                            <key>erd.node_statistics[{$METAURL},liveTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},liveTPS, {#SHARDID}]</key>
                             <delay>{$NSINTLIVE}</delay>
                             <applications>
                                 <application>
@@ -122,7 +242,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Peak TPS</name>
-                            <key>erd.node_statistics[{$METAURL},peakTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},peakTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -132,7 +252,7 @@
                         </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Total Processed TX Count</name>
-                            <key>erd.node_statistics[{$METAURL},totalProcessedTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -145,8 +265,16 @@
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{$METAURL}</macro>
-                    <value>http://1.2.3.4:8080/node/statistics</value>
+                    <macro>{$HSEXP}</macro>
+                    <value>295</value>
+                </macro>
+                <macro>
+                    <macro>{$HSINT}</macro>
+                    <value>5m</value>
+                </macro>
+                <macro>
+                    <macro>{$METANODEURL}</macro>
+                    <value>http://localhost:8080</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -173,9 +301,97 @@
             </applications>
             <items>
                 <item>
+                    <name>Validators Active</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_active_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Validators Inactive</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_inactive_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Validators Outdated</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_outdated_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Active</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_active_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Inactive</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_inactive_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Outdated</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_outdated_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Metachain Validators Total</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_total_validators,meta,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Validators Total</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>erd.heartbeat_statistics[{$METANODEURL},erd_total_validators,all,{$HSEXP}]</key>
+                    <delay>{$HSINT}</delay>
+                    <applications>
+                        <application>
+                            <name>Elrond Blockchain Statistics</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
                     <name>Metachain Average Block TX Count</name>
                     <type>ZABBIX_ACTIVE</type>
-                    <key>erd.node_statistics[{$METAURL},averageBlockTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -186,7 +402,7 @@
                 <item>
                     <name>Metachain Current Block Nonce</name>
                     <type>ZABBIX_ACTIVE</type>
-                    <key>erd.node_statistics[{$METAURL},blockNumber]</key>
+                    <key>erd.node_statistics[{$METANODEURL},blockNumber]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -197,7 +413,7 @@
                 <item>
                     <name>Metachain Live TPS</name>
                     <type>ZABBIX_ACTIVE</type>
-                    <key>erd.node_statistics[{$METAURL},liveTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},liveTPS]</key>
                     <delay>{$NSINTLIVE}</delay>
                     <applications>
                         <application>
@@ -208,7 +424,7 @@
                 <item>
                     <name>Metachain Peak TPS</name>
                     <type>ZABBIX_ACTIVE</type>
-                    <key>erd.node_statistics[{$METAURL},peakTPS]</key>
+                    <key>erd.node_statistics[{$METANODEURL},peakTPS]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -219,7 +435,7 @@
                 <item>
                     <name>Metachain Total Processed TX Count</name>
                     <type>ZABBIX_ACTIVE</type>
-                    <key>erd.node_statistics[{$METAURL},totalProcessedTxCount]</key>
+                    <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount]</key>
                     <delay>{$NSINT}</delay>
                     <applications>
                         <application>
@@ -232,14 +448,58 @@
                 <discovery_rule>
                     <name>Shard Discovery</name>
                     <type>ZABBIX_ACTIVE</type>
-                    <key>erd.shards_discovery[{$METAURL}]</key>
-                    <delay>1h</delay>
-                    <lifetime>1d</lifetime>
+                    <key>erd.shards_discovery[{$METANODEURL}]</key>
+                    <delay>5m</delay>
+                    <lifetime>1h</lifetime>
                     <item_prototypes>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Active</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_active_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Inactive</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_inactive_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Outdated</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_outdated_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Shard {#SHARDID} Validators Total</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>erd.heartbeat_statistics[{$METANODEURL},erd_shard_total_validators,{#SHARDID},{$HSEXP}]</key>
+                            <delay>{$HSINT}</delay>
+                            <applications>
+                                <application>
+                                    <name>Elrond Blockchain Statistics</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
                         <item_prototype>
                             <name>Shard {#SHARDID} Average Block TX Count</name>
                             <type>ZABBIX_ACTIVE</type>
-                            <key>erd.node_statistics[{$METAURL},averageBlockTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageBlockTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -250,7 +510,7 @@
                         <item_prototype>
                             <name>Shard {#SHARDID} Average TPS</name>
                             <type>ZABBIX_ACTIVE</type>
-                            <key>erd.node_statistics[{$METAURL},averageTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},averageTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -261,7 +521,7 @@
                         <item_prototype>
                             <name>Shard {#SHARDID} Current Block Nonce</name>
                             <type>ZABBIX_ACTIVE</type>
-                            <key>erd.node_statistics[{$METAURL},currentBlockNonce, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},currentBlockNonce, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -272,7 +532,7 @@
                         <item_prototype>
                             <name>Shard {#SHARDID} Live TPS</name>
                             <type>ZABBIX_ACTIVE</type>
-                            <key>erd.node_statistics[{$METAURL},liveTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},liveTPS, {#SHARDID}]</key>
                             <delay>{$NSINTLIVE}</delay>
                             <applications>
                                 <application>
@@ -283,7 +543,7 @@
                         <item_prototype>
                             <name>Shard {#SHARDID} Peak TPS</name>
                             <type>ZABBIX_ACTIVE</type>
-                            <key>erd.node_statistics[{$METAURL},peakTPS, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},peakTPS, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -294,7 +554,7 @@
                         <item_prototype>
                             <name>Shard {#SHARDID} Total Processed TX Count</name>
                             <type>ZABBIX_ACTIVE</type>
-                            <key>erd.node_statistics[{$METAURL},totalProcessedTxCount, {#SHARDID}]</key>
+                            <key>erd.node_statistics[{$METANODEURL},totalProcessedTxCount, {#SHARDID}]</key>
                             <delay>{$NSINT}</delay>
                             <applications>
                                 <application>
@@ -307,8 +567,16 @@
             </discovery_rules>
             <macros>
                 <macro>
-                    <macro>{$METAURL}</macro>
-                    <value>http://1.2.3.4:8080/node/statistics</value>
+                    <macro>{$HSEXP}</macro>
+                    <value>295</value>
+                </macro>
+                <macro>
+                    <macro>{$HSINT}</macro>
+                    <value>5m</value>
+                </macro>
+                <macro>
+                    <macro>{$METANODEURL}</macro>
+                    <value>http://localhost:8080</value>
                 </macro>
                 <macro>
                     <macro>{$NSINT}</macro>
@@ -381,8 +649,8 @@
                 <discovery_rule>
                     <name>Elrond Nodes Discovery</name>
                     <key>erd.nodes_discovery[{$NSEXP}]</key>
-                    <delay>1h</delay>
-                    <lifetime>1d</lifetime>
+                    <delay>5m</delay>
+                    <lifetime>1h</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>ERD Node nonce increase on {#NODENAME}</name>
@@ -699,6 +967,17 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>ERD Validator temp rating for {#NODENAME}</name>
+                            <key>erd.validator_statistics[tempRating,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
+                            <delay>{$VSINT}</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ERD Validator failures for {#NODENAME}</name>
                             <key>erd.validator_statistics[totalNumValidatorFailure,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
                             <delay>{$VSINT}</delay>
@@ -816,7 +1095,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>https://wallet-api.elrond.com/validator/statistics</value>
+                    <value>https://api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
@@ -828,11 +1107,11 @@
                 </macro>
                 <macro>
                     <macro>{$VSEXP}</macro>
-                    <value>3590</value>
+                    <value>295</value>
                 </macro>
                 <macro>
                     <macro>{$VSINT}</macro>
-                    <value>60m</value>
+                    <value>5m</value>
                 </macro>
             </macros>
         </template>
@@ -900,8 +1179,8 @@
                     <name>Elrond Nodes Discovery</name>
                     <type>ZABBIX_ACTIVE</type>
                     <key>erd.nodes_discovery[{$NSEXP}]</key>
-                    <delay>1h</delay>
-                    <lifetime>1d</lifetime>
+                    <delay>5m</delay>
+                    <lifetime>1h</lifetime>
                     <item_prototypes>
                         <item_prototype>
                             <name>ERD Node nonce increase on {#NODENAME}</name>
@@ -1238,6 +1517,18 @@
                             </applications>
                         </item_prototype>
                         <item_prototype>
+                            <name>ERD Validator temp rating for {#NODENAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>erd.validator_statistics[tempRating,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
+                            <delay>{$VSINT}</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Elrond Node</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
                             <name>ERD Validator failures for {#NODENAME}</name>
                             <type>ZABBIX_ACTIVE</type>
                             <key>erd.validator_statistics[totalNumValidatorFailure,{#NODEIP},{#NODEPORT},{$METANODEURL},{$VSEXP},{$NSEXP}]</key>
@@ -1357,7 +1648,7 @@
             <macros>
                 <macro>
                     <macro>{$METANODEURL}</macro>
-                    <value>https://wallet-api.elrond.com/validator/statistics</value>
+                    <value>https://api.elrond.com</value>
                 </macro>
                 <macro>
                     <macro>{$NSEXP}</macro>
@@ -1369,11 +1660,11 @@
                 </macro>
                 <macro>
                     <macro>{$VSEXP}</macro>
-                    <value>3590</value>
+                    <value>295</value>
                 </macro>
                 <macro>
                     <macro>{$VSINT}</macro>
-                    <value>60m</value>
+                    <value>5m</value>
                 </macro>
             </macros>
         </template>

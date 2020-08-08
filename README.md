@@ -1,7 +1,7 @@
 # zabbix-elrond-plugin
 Zabbix monitoring plugin for the Elrond Nodes.
 
-This Zabbix custom plugin and template will provide you automatic discovery for your Elrond nodes, monitoring some of the most important items, adding a few triggers and graphs configuration.
+This Zabbix custom plugin and templates will provide you automatic discovery for your Elrond nodes, monitoring the most important items, adding triggers and graphs configuration.
 
 ## Prerequisites
 1. Zabbix Server
@@ -32,13 +32,14 @@ After importing the template into the Zabbix server, adapt the items, triggers, 
 
 ### Template Macros
 
-{$METANODEURL} - The metachain observer API URL from where to fetch validator statistics (should point to /validator/statistics API endpoint) e.g http://localhost:8081/validator/statistics<br/><br/>
-{$METAURL} - The metachain observer API URL from where to fetch shards statistics (should point to /node/statistics API endpoint)  e.g http://localhost:8081/node/statistics<br/><br/>
-{$NSINT} - The check interval for the node status items. This is in the zabbix interval format. e.g. 30s / 1m / 1d<br/><br/>
-{$NSINTLIVE} - The check interval for the shard statistics live TPS items. This is in the zabbix interval format.  e.g. 30s / 1m / 1d<br/><br/>
-{$VSINT} - The check interval for the validator statistics items. This is in the zabbix interval format. e.g. 30s / 1m / 1d<br/><br/>
+{$METANODEURL} - The metachain observer API URL from where to fetch validator and shards statistics. e.g http://localhost:8081<br/><br/>
+{$NSINT} - The check interval for the node status items. Use Zabbix interval format. e.g. 30s / 1m / 1d<br/><br/>
+{$NSINTLIVE} - The check interval for the shard statistics live TPS items. Use Zabbix interval format.  e.g. 30s / 1m / 1d<br/><br/>
+{$VSINT} - The check interval for the validator statistics items. Use Zabbix interval format. e.g. 30s / 1m / 1d<br/><br/>
+{$HSINT} - The check interval for the heartbeat statistics items. Use Zabbix interval format. e.g. 30s / 1m / 1d<br/><br/>
 {$NSEXP} - Node Status Cache expiry (seconds) - Controls for how many seconds to keep the node status data for the node_status check script. This should be one or two seconds less than {$NSINT}<br/><br/>
-{$VSEXP} - Validator Statistics Cache1 expiry (seconds) - Controls for how many seconds to keep the validator statistics data for the validator_statistics check script. This should be one or two seconds less than {$VSINT}<br/>
+{$VSEXP} - Validator Statistics Cache expiry (seconds) - Controls for how many seconds to keep the validator statistics data for the validator_statistics check script. This should be one or two seconds less than {$VSINT}<br/><br/>
+{$HSEXP} - Heartbeat Statistics Cache expiry (seconds) - Controls for how many seconds to keep the heartbeat statistics data for the heartbeat_statistics check script. This should be one or two seconds less than {$HSINT}<br/>
 
 ## Uninstalling
 Run the uninstallation script:

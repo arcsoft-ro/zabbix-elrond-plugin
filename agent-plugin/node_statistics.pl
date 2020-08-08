@@ -4,16 +4,17 @@ use Scalar::Util qw(looks_like_number);
 use ERD::Utils;
 use ERD::Api;
 
-my $nodeUrl = $ARGV[0];
+my $metaNodeUrl = $ARGV[0];
 my $metric = $ARGV[1];
 my $shard = $ARGV[2];
-unless($nodeUrl && $metric){
-    print("0\n"); exit 1;
+
+unless($metaNodeUrl && $metric){
+    print("Arguments Error!\n"); exit 1;
 }
 
-my $nodeStatistics = getNodeStatistics($nodeUrl);
+my $nodeStatistics = getNodeStatistics($metaNodeUrl);
 unless($nodeStatistics){
-    print("0\n"); exit 2;
+    print("Could not fetch node statistics from $metaNodeUrl\n"); exit 2;
 }
 
 my $shardInfo = %$nodeStatistics{"shardStatistics"};
@@ -32,9 +33,10 @@ if(looks_like_number($shard)){
 
 $retVal = %$nodeStatistics{$metric};
 
-unless($retVal || looks_like_number($retVal)){
-    print("0\n"); exit 3;
+unless(defined($retVal)){
+    print("Undefined return value!\n"); exit 3;
 }
 
 print "$retVal\n";
+
 exit 0;

@@ -13,7 +13,7 @@ my $port = $ARGV[2];
 my $nsExpire = $ARGV[3] ? $ARGV[3] : $nsExpireDefault;
 
 unless($metric && $host && $port){
-    print("0\n"); exit 1;
+    print("Arguments Error!\n"); exit 1;
 }
 
 my $nsCache = new Cache::FileCache( {
@@ -29,7 +29,7 @@ unless($nodeInfo){
         $nsCache->set($nsKeyPrefix . $port, $nodeInfo);
     }
     else{
-        print("0\n"); exit 2;
+        print("Could not fetch node status fron $host:$port\n"); exit 2;
     }
 }
 
@@ -48,9 +48,10 @@ else{
     $retVal = %$nodeInfo{$metric};
 }
 
-unless($retVal || looks_like_number($retVal)){
-    print("0\n"); exit 3;
+unless(defined($retVal)){
+    print("Undefined return value!\n"); exit 3;
 }
 
 print "$retVal\n";
+
 exit 0;
