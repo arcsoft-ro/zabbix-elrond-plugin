@@ -19,13 +19,16 @@ foreach my $configFile(@configFiles){
         if(configLineContains($_,"rest-api-interface")){
             chomp;
             my @parts = split(/rest-api-interface/,$_);
-	    my $apiConfig = $parts[1];
-	    @parts = split(/:/,$parts[1]);
-	    my @portParts = split(/\s+/,$parts[1]);
+            my $apiConfig = $parts[1];
+            @parts = split(/:/,$parts[1]);
+            my @portParts = split(/\s+/,$parts[1]);
             my $port = $portParts[0];
             @parts = split(/\s+/,$parts[0]);
             my $host = $parts[$#parts];
             if($host eq "0.0.0.0"){
+                $host = "127.0.0.1";
+            }
+            if($host eq "localhost"){
                 $host = "127.0.0.1";
             }
             $nodeName = $hostName . ":" . $port;
